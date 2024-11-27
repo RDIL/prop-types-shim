@@ -7,15 +7,16 @@
 
 'use strict';
 
-var ReactIs = require('react-is');
-var assign = require('object-assign');
+// var ReactIs = require('react-is');
+// var assign = require('object-assign');
 
-var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
-var has = require('./lib/has');
-var checkPropTypes = require('./checkPropTypes');
+// var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
+// var has = require('./lib/has');
+// var checkPropTypes = require('./checkPropTypes');
 
-var printWarning = function() {};
+// var printWarning = function() {};
 
+/*
 if (process.env.NODE_ENV !== 'production') {
   printWarning = function(text) {
     var message = 'Warning: ' + text;
@@ -30,83 +31,24 @@ if (process.env.NODE_ENV !== 'production') {
     } catch (x) {}
   };
 }
+ */
 
-function emptyFunctionThatReturnsNull() {
-  return null;
-}
+// function emptyFunctionThatReturnsNull() {
+//   return null;
+// }
 
-module.exports = function(isValidElement, throwOnDirectAccess) {
-  /* global Symbol */
+module.exports = require('./factoryWithThrowingShims.js');
+/*
+function(isValidElement, throwOnDirectAccess) {
   var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
   var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
 
-  /**
-   * Returns the iterator method function contained on the iterable object.
-   *
-   * Be sure to invoke the function with the iterable as context:
-   *
-   *     var iteratorFn = getIteratorFn(myIterable);
-   *     if (iteratorFn) {
-   *       var iterator = iteratorFn.call(myIterable);
-   *       ...
-   *     }
-   *
-   * @param {?object} maybeIterable
-   * @return {?function}
-   */
   function getIteratorFn(maybeIterable) {
     var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
     if (typeof iteratorFn === 'function') {
       return iteratorFn;
     }
   }
-
-  /**
-   * Collection of methods that allow declaration and validation of props that are
-   * supplied to React components. Example usage:
-   *
-   *   var Props = require('ReactPropTypes');
-   *   var MyArticle = React.createClass({
-   *     propTypes: {
-   *       // An optional string prop named "description".
-   *       description: Props.string,
-   *
-   *       // A required enum prop named "category".
-   *       category: Props.oneOf(['News','Photos']).isRequired,
-   *
-   *       // A prop named "dialog" that requires an instance of Dialog.
-   *       dialog: Props.instanceOf(Dialog).isRequired
-   *     },
-   *     render: function() { ... }
-   *   });
-   *
-   * A more formal specification of how these methods are used:
-   *
-   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
-   *   decl := ReactPropTypes.{type}(.isRequired)?
-   *
-   * Each and every declaration produces a function with the same signature. This
-   * allows the creation of custom validation functions. For example:
-   *
-   *  var MyLink = React.createClass({
-   *    propTypes: {
-   *      // An optional string or URI prop named "href".
-   *      href: function(props, propName, componentName) {
-   *        var propValue = props[propName];
-   *        if (propValue != null && typeof propValue !== 'string' &&
-   *            !(propValue instanceof URI)) {
-   *          return new Error(
-   *            'Expected a string or an URI for ' + propName + ' in ' +
-   *            componentName
-   *          );
-   *        }
-   *      }
-   *    },
-   *    render: function() {...}
-   *  });
-   *
-   * @internal
-   */
 
   var ANONYMOUS = '<<anonymous>>';
 
@@ -135,11 +77,6 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     exact: createStrictShapeTypeChecker,
   };
 
-  /**
-   * inlined Object.is polyfill to avoid requiring consumers ship their own
-   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
-   */
-  /*eslint-disable no-self-compare*/
   function is(x, y) {
     // SameValue algorithm
     if (x === y) {
@@ -151,15 +88,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       return x !== x && y !== y;
     }
   }
-  /*eslint-enable no-self-compare*/
 
-  /**
-   * We use an Error-like object for backward compatibility as people may call
-   * PropTypes directly and inspect their output. However, we don't use real
-   * Errors anymore. We don't inspect their stack anyway, and creating them
-   * is prohibitively expensive if they are created too often, such as what
-   * happens in oneOfType() for any type before the one that matched.
-   */
   function PropTypeError(message, data) {
     this.message = message;
     this.data = data && typeof data === 'object' ? data: {};
@@ -608,3 +537,4 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
   return ReactPropTypes;
 };
+*/

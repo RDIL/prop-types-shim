@@ -1,5 +1,5 @@
 {
-  "name": "prop-types",
+  "name": "@rdil/prop-types-shim",
   "version": "15.8.1",
   "description": "Runtime type checking for React props and similar objects.",
   "sideEffects": false,
@@ -17,18 +17,15 @@
     "prop-types.min.js",
     "lib"
   ],
-  "repository": "facebook/prop-types",
+  "repository": "RDIL/prop-types-shim",
   "keywords": [
     "react"
   ],
   "bugs": {
-    "url": "https://github.com/facebook/prop-types/issues"
+    "url": "https://github.com/RDIL/prop-types-shim/issues"
   },
-  "homepage": "https://facebook.github.io/react/",
+  "homepage": "https://github.com/RDIL/prop-types-shim",
   "dependencies": {
-    "loose-envify": "^1.4.0",
-    "object-assign": "^4.1.1",
-    "react-is": "^16.13.1"
   },
   "scripts": {
     "pretest": "npm run lint",
@@ -52,9 +49,5 @@
     "uglifyify": "^5.0.2",
     "uglifyjs": "^2.4.11"
   },
-  "browserify": {
-    "transform": [
-      "loose-envify"
-    ]
-  }
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
